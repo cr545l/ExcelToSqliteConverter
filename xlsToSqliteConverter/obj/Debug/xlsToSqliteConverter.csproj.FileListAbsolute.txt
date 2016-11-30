@@ -1,0 +1,17 @@
+C:\My Files\Private\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\xlsToSqliteConverter.exe.config
+C:\My Files\Private\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\xlsToSqliteConverter.exe
+C:\My Files\Private\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\xlsToSqliteConverter.pdb
+C:\My Files\Private\xlsToSqliteConverter\xlsToSqliteConverter\obj\Debug\xlsToSqliteConverter.csprojResolveAssemblyReference.cache
+C:\My Files\Private\xlsToSqliteConverter\xlsToSqliteConverter\obj\Debug\xlsToSqliteConverter.exe
+C:\My Files\Private\xlsToSqliteConverter\xlsToSqliteConverter\obj\Debug\xlsToSqliteConverter.pdb
+C:\My Files\Private\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\EntityFramework.dll
+C:\My Files\Private\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\EntityFramework.SqlServer.dll
+C:\My Files\Private\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\System.Data.SQLite.dll
+C:\My Files\Private\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\System.Data.SQLite.EF6.dll
+C:\My Files\Private\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\System.Data.SQLite.Linq.dll
+C:\My Files\Private\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\EntityFramework.xml
+C:\My Files\Private\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\EntityFramework.SqlServer.xml
+C:\My Files\Private\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\System.Data.SQLite.xml
+C:\Users\Administrator\Desktop\XlsToSqliteConverter.git\xlsToSqliteConverter\bin\Debug\xlsToSqliteConverter.exe.config
+C:\Users\Administrator\Desktop\XlsToSqliteConverter.git\xlsToSqliteConverter\obj\Debug\xlsToSqliteConverter.exe
+C:\Users\Administrator\Desktop\XlsToSqliteConverter.git\xlsToSqliteConverter\obj\Debug\xlsToSqliteConverter.pdb
