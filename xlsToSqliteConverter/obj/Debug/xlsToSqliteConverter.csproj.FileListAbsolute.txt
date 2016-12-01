@@ -15,3 +15,17 @@ C:\My Files\Private\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\System.D
 C:\Users\Administrator\Desktop\XlsToSqliteConverter.git\xlsToSqliteConverter\bin\Debug\xlsToSqliteConverter.exe.config
 C:\Users\Administrator\Desktop\XlsToSqliteConverter.git\xlsToSqliteConverter\obj\Debug\xlsToSqliteConverter.exe
 C:\Users\Administrator\Desktop\XlsToSqliteConverter.git\xlsToSqliteConverter\obj\Debug\xlsToSqliteConverter.pdb
+C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\xlsToSqliteConverter.exe.config
+C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverter\obj\Debug\xlsToSqliteConverter.exe
+C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverter\obj\Debug\xlsToSqliteConverter.pdb
+C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\xlsToSqliteConverter.exe
+C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\xlsToSqliteConverter.pdb
+C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\System.Data.SQLite.dll
+C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverter\bin\Debug\System.Data.SQLite.xml
+C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverter\obj\Debug\xlsToSqliteConverter.csprojResolveAssemblyReference.cache

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 
-namespace xlsToSqliteConverter
+namespace Lofle.XlsToSqliteConverter
 {
 	public class SQLiteAssist
 	{
@@ -56,110 +56,65 @@ namespace xlsToSqliteConverter
 			}
 		}
 
-		public class DataSet
-		{
-			public string _name;
-			public string[] _columns;
-			public Type[] _types;
-			public dynamic[,] _datas;
-
-			public void Set( dynamic data, int row, int range )
-			{
-				if( 1 == row )
-				{
-					_columns[range - 1] = data as String;
-				}
-				else
-				{
-					if( 2 == row )
-					{
-						_types[range - 1] = data.GetType();
-					}
-					_datas[row - 2, range - 1] = data;
-				}
-			}
-		}
-
 		static public void CreateTable( Info path, DataSet dataSet )
 		{
-			try
-			{
-				CreateTable( path._sqlConnection, dataSet );
-				Insert( path._sqlConnection, dataSet );
-			}
-			catch( Exception e )
-			{
-				System.Console.WriteLine( e );
-			}
+			CreateTable( path._sqlConnection, dataSet );
+			Insert( path._sqlConnection, dataSet );
+		}
+
+		static private bool CreateTable( SQLiteConnection connection, DataSet dataSet )
+		{
+			string command = "create table " + dataSet._sheetName + " (" + dataSet.GetColumnAndTypes() + ")";
+			return Command( connection, command );
 		}
 
 		static private void Insert( SQLiteConnection connection, DataSet dataSet )
 		{
-			string insert = "insert into "+dataSet._name+" (";
-			for( int i = 0; i < dataSet._columns.Length; i++ )
-			{
-				if( 0 != i )
-					insert += ", ";
-				insert += dataSet._columns[i];
-			}
-			insert += ") values (";
+			string insert = "insert into " + dataSet._sheetName + " (" + dataSet.GetColumns() + ") values (";
+			StringBuilder command = null;
 
-			for( int j = 0; j < dataSet._datas.GetLength( 0 ); j++ )
+			for( int j = 1; j <= dataSet._datas.GetLength( 0 ); j++ )
 			{
-				string command = insert;
-				for( int i = 0; i < dataSet._datas.GetLength( 1 ); i++ )
+				command = new StringBuilder( insert );
+				for( int i = 1; i <= dataSet._datas.GetLength( 1 ); i++ )
 				{
-					if( 0 != i )
-						command += ", ";
-					command += dataSet._datas[j, i];
+					dynamic data = dataSet._datas[j, i];
+					if( 1 != i )
+					{
+						command.Append( "\', " );
+					}
+					command.Append( "\'" );
+
+					if( null != data )
+					{
+						if( data.GetType() == typeof( string ) )
+						{
+							string stringData = data as string;
+							stringData = stringData.Replace( "\'", "\'\'" );
+							data = stringData;
+						}
+						command.Append( data );
+					}
 				}
-				command += ")";
-				Command( connection, command );
+				command.Append( "\')" );
+				Command( connection, command.ToString() );
 			}
 		}
 
-		static private void CreateTable( SQLiteConnection connection, DataSet dataSet )
+		static private bool Command( SQLiteConnection connection, string command )
 		{
-			string command = "create table " + dataSet._name + " (";
-			for( int i = 0; i < dataSet._columns.Length; i++ )
+			try
 			{
-				if( 0 != i )
-					command += ", ";
-				command += String.Format( "{0} {1}", dataSet._columns[i], GetType( dataSet._types[i] ) );
+				SQLiteCommand sql = new SQLiteCommand( command, connection );
+				sql.ExecuteNonQuery();
+				return true;
 			}
-			command += ")";
-
-			Command( connection, command );
-		}
-
-		static private string GetType( Type type )
-		{
-			string result = type.ToString();
-
-			if( typeof( string ) == type )
+			catch( Exception e )
 			{
-				result = "varchar(255)";
+				// 시트명이 숫자로 되어 있으면 예외발생
+				Debug.LogError( "{0} {1}", command, e.ToString() );
+				return false;
 			}
-			else if( typeof( float ) == type || typeof( double ) == type )
-			{
-				result = "float";
-			}
-			else if( typeof( int ) == type )
-			{
-				result = "int";
-			}
-			else if( typeof( bool ) == type )
-			{
-				result = "bool";
-			}
-
-			return result;
-		}
-
-		static private void Command( SQLiteConnection connection, string command )
-		{
-			SQLiteCommand sql = new SQLiteCommand( command, connection );
-			sql.ExecuteNonQuery();
 		}
 	}
 }
