@@ -29,13 +29,13 @@ CUI 기반의 Excel to SQLite 변환 프로그램
 >
 > **사용 예제**
 >
-> files "C:\Example\Directory\1.xls" "C:\Example\Directory\2.xlsx" "C:\Example\Directory\3.xls" "C:\Example\Directory\4.xls"
-> 
-> - 총 4개의 파일을 변환하는 동작
+>> **files "C:\Example\Directory\1.xls" "C:\Example\Directory\2.xlsx" "C:\Example\Directory\3.xls" "C:\Example\Directory\4.xls"**
+>> 
+>> - 총 4개의 파일을 변환하는 동작
 >
-> directorys "C:\Example\Directory" "C:\Example\Directory2"
->
-> - 총 2개 폴더 내부의 파일들을 변환하는 동작
+>> **directorys "C:\Example\Directory" "C:\Example\Directory2"**
+>>
+>> - 총 2개 폴더 내부의 파일들을 변환하는 동작
 
 ***
 
