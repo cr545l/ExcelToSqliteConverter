@@ -20,7 +20,7 @@ Excel to SQLite
 > - **1행** : Column 명
 > - **2행** : 해당 Column의 Type
 >
->> **SQLite 자료형**
+>> **SQLite 자료형** (동적 타입이므로 꼭 맞추지 않아도 동작)
 >>
 >> - **INTEGER** : 1,2,3,4,6,8bytes의 정수값
 >> - **REAL** : 8bytes의 부동소수점값
