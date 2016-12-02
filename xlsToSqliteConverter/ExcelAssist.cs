@@ -18,58 +18,45 @@ namespace Lofle.XlsToSqliteConverter
 				return;
 			}
 
-			SQLiteAssist.Info info = null;
+			SQLPathInfo info = null;
 			Excel.Workbook workBook = null;
+
 			try
 			{
-				info = new SQLiteAssist.Info( filePath );
-				workBook = application.Workbooks.Open( info._filePath, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0 );
+				info = new SQLPathInfo( filePath );
+				workBook = application.Workbooks.Open( info.FilePath, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0 );
+				
+				if( null != workBook )
+				{
+					// UsedRange.Value2로 가져온 배열의 인덱스가 1부터 시작
+					for( int i = 1; i <= workBook.Worksheets.Count; i++ )
+					{
+						SQLDataSet dataSet = SheetToDataSet( info, workBook.Worksheets.get_Item( i ) );
+						SQLiteAssist.CreateTable( info, dataSet );
+					}
+				}
 			}
 			catch(Exception e)
 			{
 				Debug.LogError( e.ToString() );
-				return;
 			}
-
-			if( null != workBook )
+			finally
 			{
-				for( int i = 1; i <= workBook.Worksheets.Count; i++ )
-				{
-					DataSet dataSet = SheetToDataSet( info, workBook.Worksheets.get_Item( i ) );
-					SQLiteAssist.CreateTable( info, dataSet );
-				}
+				Program.Release( workBook );
 			}
 		}
 
-		static DataSet SheetToDataSet( SQLiteAssist.Info info, Excel.Worksheet workSheet )
+		static SQLDataSet SheetToDataSet( SQLPathInfo info, Excel.Worksheet workSheet )
 		{
 			Excel.Range range = workSheet.UsedRange;
 			Excel.Range rows = range.Rows;
 			Excel.Range columns = range.Columns;
 
-			DataSet dataSet = new DataSet();
-			dataSet._sheetName = workSheet.Name;
-			dataSet._columns = new String[columns.Count];
-			dataSet._types = new Type[columns.Count];
-			dataSet._datas = new dynamic[rows.Count - 1, columns.Count];
-			
-			for( int j = 1; j <= rows.Count; j++ )
-			{
-				for( int i = 1; i <= columns.Count; i++ )
-				{
-					Excel.Range value = range.Cells[j, i];
+			SQLDataSet dataSet = new SQLDataSet();
+			dataSet.SheetName = workSheet.Name;
+			dataSet.Datas = workSheet.UsedRange.Value2;
 
-					if( null != value )
-					{
-						dynamic cellData = value.Value2;
-						dataSet.Set( cellData, j, i );
-					}
-				}
-				if( j == 2 )
-					break;
-			}
-
-			dataSet._datas = workSheet.UsedRange.Value2;
+			Program.Release( workSheet );
 
 			return dataSet;
 		}
