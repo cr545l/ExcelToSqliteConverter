@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lofle.XlsToSqliteConverter
 {
-	class Debug
+	public class Debug
 	{
 		static public void Log( string format, params object[] arg )
 		{
