@@ -20,6 +20,14 @@ Excel to SQLite
 > - **1행** : Column 명
 > - **2행** : 해당 Column의 Type
 >
+>> **SQLite 자료형**
+>>
+>> - **INTEGER** : 1,2,3,4,6,8bytes의 정수값
+>> - **REAL** : 8bytes의 부동소수점값
+>> - **TEXT** : UTF-8, UTF-16BE, UTF-16LE인코딩의 문자열
+>> - **BLOB** : 입력된 그대로 저장, 바이너리 파일 등
+>> - **NULL** : 널값
+>
 > 위 규칙으로 Excel 파일에서 SQLite 파일로 변환
 
 
