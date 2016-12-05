@@ -9,6 +9,10 @@ Excel to SQLite
 
 ### **사용방법**
 
+> **GUI**
+>
+> 대상 파일을 Drag & Drop하면 Excel에서 SQLite 파일로 변환, 같은 경로의 같은 이름으로 저장됨
+
 > **명령 인수**
 >  
 > - **files** : 파일을 대상으로 함
