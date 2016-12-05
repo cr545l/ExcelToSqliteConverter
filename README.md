@@ -1,6 +1,6 @@
 Excel to SQLite
 =
-## CUI 기반의 Excel to SQLite 변환 프로그램
+## GUI, CUI 기반의 Excel to SQLite 변환 프로그램
 
 ### **사용 시 주의사항**
 - Excel의 Sheet 명의 처음 글자가 영문 이외 인 경우 변환 실패
