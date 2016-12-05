@@ -1,8 +1,0 @@
-C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverterGUI\obj\Release\xlsToSqliteConverterGUI.csprojResolveAssemblyReference.cache
-C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverterGUI\obj\Release\xlsToSqliteConverterGUI.csproj.GenerateResource.Cache
-C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverterGUI\bin\Release\Lofle.XlsToSqliteConverter.GUI.exe.config
-C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverterGUI\obj\Release\Lofle.XlsToSqliteConverter.GUI.Properties.Resources.resources
-C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverterGUI\bin\Release\Lofle.XlsToSqliteConverter.GUI.exe
-C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverterGUI\bin\Release\Lofle.XlsToSqliteConverter.GUI.pdb
-C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverterGUI\obj\Release\Lofle.XlsToSqliteConverter.GUI.exe
-C:\Users\Administrator\Desktop\xlsToSqliteConverter\xlsToSqliteConverterGUI\obj\Release\Lofle.XlsToSqliteConverter.GUI.pdb

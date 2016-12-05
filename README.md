@@ -50,7 +50,12 @@ Excel to SQLite
 
  [Release](https://github.com/cr545l/xlsToSqliteConverter/tree/master/Release)
  
-> **0.0.3a**
+> **0.0.4b**
+>
+> - GUI 추가
+> - 기존 Converter에 Progress를 얻을 수 있는 callback 추가
+
+> **0.0.3b**
 >
 > - 프로그램 종료 시 남아있던 자원 반환처리
 > - Column 타입을 두번째열 데이터 타입이 아닌, **두번째열에 명시적으로 정의한 값**으로 사용하도록 변경

@@ -24,25 +24,23 @@ namespace Lofle.XlsToSqliteConverter
 
 			if( eOption.none != option )
 			{
-				using( Converter converter = new Converter() )
-				{
 					string[] targetPaths = new string[args.Length - 1];
 					Array.Copy( args, 1, targetPaths, 0, targetPaths.Length );
 
 					switch( option )
 					{
 						case eOption.files:
-							converter.Files( targetPaths );
+							Converter.Files( targetPaths, ( percent, file ) => { Debug.Log("{0}% {1}",percent._convert * 100.0f, file); } );
 							break;
 
 						case eOption.directorys:
-							converter.Directorys( targetPaths );
+							Converter.Directorys( targetPaths, ( percent, file ) => { Debug.Log( "{0}% {1}", percent._convert * 100.0f, file ); } );
 							break;
 
 						default:
 							break;
 					}
-				}
+				
 			}
 		}
 

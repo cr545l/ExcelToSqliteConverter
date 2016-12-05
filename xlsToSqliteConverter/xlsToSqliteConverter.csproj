@@ -77,12 +77,12 @@
   <ItemGroup>
     <Compile Include="Command.cs" />
     <Compile Include="Converter.cs" />
-    <Compile Include="SQLDataSet.cs" />
+    <Compile Include="SQLiteData.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExcelAssist.cs" />
-    <Compile Include="SQLPathInfo.cs" />
+    <Compile Include="SQLitePathInfo.cs" />
     <Compile Include="SQLiteAssist.cs" />
   </ItemGroup>
   <ItemGroup>

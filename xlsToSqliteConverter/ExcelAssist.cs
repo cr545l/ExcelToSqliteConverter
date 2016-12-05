@@ -8,35 +8,35 @@ using System.Runtime.InteropServices;
 
 namespace Lofle.XlsToSqliteConverter
 {
-	public class ExcelAssist
+	public class ExcelAssist : IDisposable
 	{
-		static public void Read( Excel.Application application, string filePath )
+		public Excel.Application _application = new Excel.Application();
+
+		public SQLiteData[] Read( string filePath )
 		{
+			List<SQLiteData> result = new List<SQLiteData>();
+
 			if( !System.IO.File.Exists( filePath ) )
 			{
 				Debug.LogError( "{0} 파일 찾기 실패", filePath );
-				return;
+				return null;
 			}
 
-			SQLPathInfo info = null;
 			Excel.Workbook workBook = null;
-
 			try
 			{
-				info = new SQLPathInfo( filePath );
-				workBook = application.Workbooks.Open( info.FilePath, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0 );
+				workBook = _application.Workbooks.Open( filePath, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0 );
 				
 				if( null != workBook )
 				{
 					// UsedRange.Value2로 가져온 배열의 인덱스가 1부터 시작
 					for( int i = 1; i <= workBook.Worksheets.Count; i++ )
 					{
-						SQLDataSet dataSet = SheetToDataSet( info, workBook.Worksheets.get_Item( i ) );
-						SQLiteAssist.CreateTable( info, dataSet );
+						result.Add( Convert( workBook.Worksheets.get_Item( i ) ) );
 					}
 				}
 			}
-			catch(Exception e)
+			catch( Exception e )
 			{
 				Debug.LogError( e.ToString() );
 			}
@@ -44,21 +44,29 @@ namespace Lofle.XlsToSqliteConverter
 			{
 				Program.Release( workBook );
 			}
+
+			return result.ToArray();
 		}
 
-		static SQLDataSet SheetToDataSet( SQLPathInfo info, Excel.Worksheet workSheet )
+		static private SQLiteData Convert( Excel.Worksheet workSheet )
 		{
 			Excel.Range range = workSheet.UsedRange;
 			Excel.Range rows = range.Rows;
 			Excel.Range columns = range.Columns;
 
-			SQLDataSet dataSet = new SQLDataSet();
+			SQLiteData dataSet = new SQLiteData();
 			dataSet.SheetName = workSheet.Name;
 			dataSet.Datas = workSheet.UsedRange.Value2;
 
 			Program.Release( workSheet );
 
 			return dataSet;
+		}
+
+		public void Dispose()
+		{
+			_application.Quit();
+			Program.Release( _application );
 		}
 	}
 }

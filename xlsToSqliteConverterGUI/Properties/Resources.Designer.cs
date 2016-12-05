@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Lofle.XlsToSqliteConverter.GUI.Properties {
+namespace Lofle.XlsToSqliteConverterGUI.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Lofle.XlsToSqliteConverter.GUI.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Lofle.XlsToSqliteConverter.GUI.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Lofle.XlsToSqliteConverterGUI.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
