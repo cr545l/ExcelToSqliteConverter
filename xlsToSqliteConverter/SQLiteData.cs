@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +8,8 @@ namespace Lofle.XlsToSqliteConverter
 {
 	public class SQLiteData
 	{
-		private const int _COLUMNS_INDEX = 1;
-		private const int _TYPES_INDEX = 2;
+		static private readonly int _COLUMNS_INDEX = 1;
+		static private readonly int _TYPES_INDEX = 2;
 
 		private string _sheetName;
 		private string[] _columns;
@@ -78,6 +77,36 @@ namespace Lofle.XlsToSqliteConverter
 
 				callback( result, i );
 			}
+
+			return result.ToString();
+		}
+
+		public string GetCode(string fileName)
+		{
+			StringBuilder result = new StringBuilder();
+			result.Append( "namespace " );
+			result.Append( fileName );
+			result.Append( "\n{\n" );
+
+			result.Append( "\tpublic class " );
+			result.Append( _sheetName );
+			result.Append( "\n\t{\n" );
+
+			for( int i = 0; i < _types.Length; i++ )
+			{
+				if( 0 == String.Compare( _types[i].ToUpper(), "INTEGER PRIMARY KEY" ) )
+				{
+					result.Append( "\t\t[PrimaryKey, AutoIncrement]\n" );
+				}
+
+				result.Append( "\t\tpublic " );
+				result.Append( SQLiteType.ConvertCShapeType( _types[i] ));
+				result.Append( " " );
+				result.Append( _columns[i] );
+				result.Append( ";\n" );
+			}
+			result.Append( "\t}\n" );
+			result.Append( "}\n" );
 
 			return result.ToString();
 		}

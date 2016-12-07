@@ -24,23 +24,23 @@ namespace Lofle.XlsToSqliteConverter
 
 			if( eOption.none != option )
 			{
-					string[] targetPaths = new string[args.Length - 1];
-					Array.Copy( args, 1, targetPaths, 0, targetPaths.Length );
+				string[] targetPaths = new string[args.Length - 1];
+				Array.Copy( args, 1, targetPaths, 0, targetPaths.Length );
+				Converter.GenerateCodeInfo info = null;
+				switch( option )
+				{
+					case eOption.files:
+						info = Converter.Files( targetPaths, ( percent, file ) => { Debug.Log( "{0}% ({1}%) {2}", percent._convert * 100.0f, percent._insert * 100.0f, file ); } );
+						break;
 
-					switch( option )
-					{
-						case eOption.files:
-							Converter.Files( targetPaths, ( percent, file ) => { Debug.Log("{0}% {1}",percent._convert * 100.0f, file); } );
-							break;
+					case eOption.directorys:
+						info = Converter.Directorys( targetPaths, ( percent, file ) => { Debug.Log( "{0}% ({1}%) {2}", percent._convert * 100.0f, percent._insert * 100.0f, file ); } );
+						break;
 
-						case eOption.directorys:
-							Converter.Directorys( targetPaths, ( percent, file ) => { Debug.Log( "{0}% {1}", percent._convert * 100.0f, file ); } );
-							break;
-
-						default:
-							break;
-					}
-				
+					default:
+						break;
+				}
+				IOAssist.CreateFile( info.Path + Converter.GenerateCodeInfo._DEFAULT_CODE_FILE_FULLNAME, info.Code );
 			}
 		}
 
@@ -61,7 +61,7 @@ namespace Lofle.XlsToSqliteConverter
 			{
 				return (eOption)Enum.Parse( typeof( eOption ), arg.ToLower() );
 			}
-			catch 
+			catch
 			{
 				Debug.LogError( _MESSAGE_NOT_FOUND_OPTION, arg );
 				return eOption.none;

@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lofle.XlsToSqliteConverterGUI"
         mc:Ignorable="d"
-        Title="Drag &amp; Drop" Height="112" Width="256" Drop="DropFile" AllowDrop="true" ResizeMode="NoResize">
+        Title="Drag &amp; Drop" Height="183" Width="256" Drop="DropFile" AllowDrop="true" ResizeMode="NoResize">
     <Grid Margin="0,0,0,0">
-        <ProgressBar Name="convertProgress" HorizontalAlignment="Left" Height="20" Margin="43,50,0,0" VerticalAlignment="Top" Width="166"/>
-        <ProgressBar Name="insertProgress" HorizontalAlignment="Left" Height="20" Margin="43,21,0,0" VerticalAlignment="Top" Width="166"/>
+        <ProgressBar x:Name="convertProgress" HorizontalAlignment="Left" Height="20" Margin="41,97,0,0" VerticalAlignment="Top" Width="166"/>
+        <ProgressBar x:Name="insertProgress" HorizontalAlignment="Left" Height="20" Margin="41,68,0,0" VerticalAlignment="Top" Width="166"/>
+        <CheckBox x:Name="checkBox" HorizontalAlignment="Left" Height="26" Margin="41,32,0,0" VerticalAlignment="Top" Width="166" Checked="checkBox_Checked" RenderTransformOrigin="0.518,1.857" >
+            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="21" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146"/>
+        </CheckBox>
     </Grid>
 </Window>

@@ -36,6 +36,11 @@ namespace Lofle.XlsToSqliteConverter
 			get { return _fileName; }
 		}
 
+		public string DirectoryPath
+		{
+			get { return _directoryPath; }
+		}
+
 		public SQLitePathInfo( string filePath )
 		{
 			Set( filePath );
@@ -56,7 +61,7 @@ namespace Lofle.XlsToSqliteConverter
 			_sqliteFileName = FileName + ".sqlite";
 
 			_directoryPath = _excelFilePath.Substring( 0, _excelFilePath.Length - _excelFileName.Length );
-			_sqliteFilePath = _directoryPath + _sqliteFileName;
+			_sqliteFilePath = DirectoryPath + _sqliteFileName;
 
 			if( System.IO.File.Exists( _sqliteFilePath ) )
 			{

@@ -12,6 +12,7 @@ Excel to SQLite
 > **GUI**
 >
 > 대상 파일들을 Drag & Drop하면 Excel에서 SQLite 파일로 변환, 같은 경로의 같은 이름으로 저장됨
+> - **체크 박스** : SQLite에 대응하는 C# 코드 생성기능
 
 > **명령 인수**
 >  
@@ -54,6 +55,12 @@ Excel to SQLite
 
  [Release](https://github.com/cr545l/xlsToSqliteConverter/tree/master/Release)
  
+> **0.0.5b**
+>
+> - SQLite 데이터에 대응하는 C# 코드 생성기능 추가
+> - 컨버팅 성능 대폭향상
+> - 정상적인 Type인지 검사처리
+
 > **0.0.4b**
 >
 > - GUI 추가

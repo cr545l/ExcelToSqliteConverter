@@ -32,18 +32,30 @@ namespace Lofle.XlsToSqliteConverterGUI
 			convertProgress.Maximum = 1;
 			insertProgress.Minimum = 0;
 			insertProgress.Maximum = 1;
+
+			checkBox.IsChecked = true;
+			textBox.Text = Converter.GenerateCodeInfo._DEFAULT_CODE_FILE_FULLNAME;
 		}
 
 		private void DropFile( object sender, DragEventArgs e )
+		{
+			if( e.Data.GetDataPresent( DataFormats.FileDrop ) )
+			{
+				Convert( (string[])e.Data.GetData( DataFormats.FileDrop ) );
+			}
+		}
+
+		private void Convert( string[] files )
 		{
 			if( !_bStart )
 			{
 				try
 				{
-					if( e.Data.GetDataPresent( DataFormats.FileDrop ) )
+					Converter.GenerateCodeInfo info = Converter.Files( files, CallbackPercent );
+
+					if( true == checkBox.IsChecked )
 					{
-						string[] files = (string[])e.Data.GetData( DataFormats.FileDrop );
-						Converter.Files( files, CallbackPercent );
+						IOAssist.CreateFile( info.Path + textBox.Text, info.Code );
 					}
 				}
 				catch( Exception exception )
@@ -53,24 +65,24 @@ namespace Lofle.XlsToSqliteConverterGUI
 			}
 		}
 
-		private void CallbackPercent( Converter.Percents percent, string fileName )
+		private void CallbackPercent( Converter.ProgressInfo percent, string fileName )
 		{
 			RefreshUI( percent, fileName );
 		}
 
-		private void RefreshUI( Converter.Percents value, string fileName )
+		private void RefreshUI( Converter.ProgressInfo value, string fileName )
 		{
 			convertProgress.Value = value._convert;
 			insertProgress.Value = value._insert;
 
 			this.Dispatcher.Invoke(
-		   (System.Threading.ThreadStart)( () => { } ), System.Windows.Threading.DispatcherPriority.ApplicationIdle );
+		   (System.Threading.ThreadStart)(() => { }), System.Windows.Threading.DispatcherPriority.ApplicationIdle );
 
 			if( 1.0f <= value._convert )
 			{
 				Title = _titleDefault;
 				_bStart = false;
-				
+
 				convertProgress.Value = 0;
 				insertProgress.Value = 0;
 			}
@@ -80,6 +92,18 @@ namespace Lofle.XlsToSqliteConverterGUI
 				_bStart = true;
 			}
 
+		}
+
+		private void checkBox_Checked( object sender, RoutedEventArgs e )
+		{
+			if( false == checkBox.IsChecked )
+			{
+				textBox.IsEnabled = false;
+			}
+			else
+			{
+				textBox.IsEnabled = true;
+			}
 		}
 	}
 }
