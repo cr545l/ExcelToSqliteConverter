@@ -2,9 +2,9 @@ Excel to SQLite
 =
 ## GUI, CUI 기반의 Excel to SQLite 변환 프로그램
 
-### **사용 시 주의사항**
+### **확인된 문제**
 - Excel의 Sheet 명의 처음 글자가 영문 이외 인 경우 변환 실패
-
+- Excel의 셀을 지울 때 행을 선택하여 제거하지 않으면 빈 값을 참조하여 변환 실패
 ***
 
 ### **사용방법**
@@ -12,7 +12,7 @@ Excel to SQLite
 > **GUI**
 >
 > 대상 파일들을 Drag & Drop하면 Excel에서 SQLite 파일로 변환, 같은 경로의 같은 이름으로 저장됨
-> - **체크 박스** : SQLite에 대응하는 C# 코드 생성기능
+> - **체크 박스** : SQLite에 대응하는 C# 코드 생성기능 ( 파일 명을 namespace로 Sheet 명을 클래스명으로 생성 )
 
 > **명령 인수**
 >  
