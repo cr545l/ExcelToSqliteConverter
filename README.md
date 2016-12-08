@@ -1,10 +1,11 @@
 Excel to SQLite
 =
-## GUI, CUI 기반의 Excel to SQLite 변환 프로그램
 
-### **확인된 문제**
-- Excel의 Sheet 명의 처음 글자가 영문 이외 인 경우 변환 실패
-- Excel의 셀을 지울 때 행을 선택하여 제거하지 않으면 빈 값을 참조하여 변환 실패
+[![](https://img.shields.io/github/downloads/cr545l/xlsToSqliteConverter/total.svg)](https://github.com/cr545l/xlsToSqliteConverter/releases)
+
+GUI, CUI 기반의 Excel to SQLite 변환 프로그램
+
+---
 
 ### **사용방법**
 
@@ -34,9 +35,7 @@ Excel to SQLite
 >
 > 위 규칙으로 Excel 파일에서 SQLite 파일로 변환
 
-
-***
-
+---
 
 ### **사용 예제**
 
@@ -48,37 +47,8 @@ Excel to SQLite
 >
 > - 총 2개 폴더 내부의 파일들을 변환하는 동작
 
-***
+---
 
-### **버전 정보**
-
- [Release](https://github.com/cr545l/xlsToSqliteConverter/tree/master/Release)
- 
-> **1.0.0**
->
-> - Type이 확인되지 않는 Column은 String Type으로 코드 생성
- 
-> **0.0.5b**
->
-> - SQLite 데이터에 대응하는 C# 코드 생성기능 추가
-> - 컨버팅 성능 대폭향상
-> - 정상적인 Type인지 검사처리
-
-> **0.0.4b**
->
-> - GUI 추가
-> - 기존 Converter에 Progress를 얻을 수 있는 callback 추가
-
-> **0.0.3b**
->
-> - 프로그램 종료 시 남아있던 자원 반환처리
-> - Column 타입을 두번째열 데이터 타입이 아닌, **두번째열에 명시적으로 정의한 값**으로 사용하도록 변경
-
-> **0.0.2**
->
-> - 폴더 순회기능 추가
-> - '와 "처리 및 특수문자 처리
-
-> **0.0.1**
-> 
-> - 최소 기능이 구현됨
+### **확인된 문제**
+- Excel의 Sheet 명의 처음 글자가 영문 이외 인 경우 변환 실패
+- Excel의 셀을 지울 때 행을 선택하여 제거하지 않으면 빈 값을 참조하여 변환 실패
