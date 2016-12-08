@@ -5,7 +5,7 @@ Excel to SQLite
 
 GUI, CUI 기반의 Excel to SQLite 변환 프로그램
 
-![Example](https://github.com/cr545l/xlsToSqliteConverter/tree/master/Example/Example.gif)
+![Example](https://github.com/cr545l/xlsToSqliteConverter/blob/master/Example/Example.gif?raw=true)
 
 ---
 
