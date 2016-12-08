@@ -24,7 +24,7 @@ namespace Lofle.XlsToSqliteConverter
 
 		static public string ConvertCShapeType( string sqliteType )
 		{
-			return _parseDic[sqliteType.ToLower()];
+			return _parseDic.ContainsKey( sqliteType.ToLower() ) ? _parseDic[sqliteType.ToLower()] : "string";
 		}
 	}
 }
