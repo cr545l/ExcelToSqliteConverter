@@ -54,6 +54,10 @@ Excel to SQLite
 
  [Release](https://github.com/cr545l/xlsToSqliteConverter/tree/master/Release)
  
+> **1.0.0**
+>
+> - Type이 확인되지 않는 Column은 String Type으로 코드 생성
+ 
 > **0.0.5b**
 >
 > - SQLite 데이터에 대응하는 C# 코드 생성기능 추가
