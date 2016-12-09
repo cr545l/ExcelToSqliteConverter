@@ -16,6 +16,7 @@ namespace Lofle.XlsToSqliteConverter
 			{ "real", typeof(Double).ToString() },
 			{ "float", typeof(Double).ToString() },
 			{ "text", typeof(String).ToString() },
+			{ "string", typeof(String).ToString() },
 			{ "varchar", typeof(String).ToString() },
 			{ "datetime", typeof(DateTime).ToString() },
 			{ "blob", typeof(byte[]).ToString() },
@@ -24,7 +25,14 @@ namespace Lofle.XlsToSqliteConverter
 
 		static public string ConvertCShapeType( string sqliteType )
 		{
-			return _parseDic.ContainsKey( sqliteType.ToLower() ) ? _parseDic[sqliteType.ToLower()] : "string";
+			if( null == sqliteType )
+			{
+				return _parseDic["string"];
+			}
+			else
+			{
+				return _parseDic.ContainsKey( sqliteType.ToLower() ) ? _parseDic[sqliteType.ToLower()] : _parseDic["string"];
+			}
 		}
 	}
 }

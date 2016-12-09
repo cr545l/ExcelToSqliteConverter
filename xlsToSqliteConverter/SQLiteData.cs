@@ -94,7 +94,7 @@ namespace Lofle.XlsToSqliteConverter
 
 			for( int i = 0; i < _types.Length; i++ )
 			{
-				if( 0 == String.Compare( _types[i].ToUpper(), "INTEGER PRIMARY KEY" ) )
+				if( null != _types[i] && 0 == String.Compare( _types[i].ToUpper(), "INTEGER PRIMARY KEY" ) )
 				{
 					result.Append( "\t\t[PrimaryKey, AutoIncrement]\n" );
 				}
