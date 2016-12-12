@@ -103,7 +103,7 @@ namespace Lofle.XlsToSqliteConverter
 				result.Append( SQLiteType.ConvertCShapeType( _types[i] ));
 				result.Append( " " );
 				result.Append( _columns[i] );
-				result.Append( ";\n" );
+				result.Append( " { get; set; }\n" );
 			}
 			result.Append( "\t}\n" );
 			result.Append( "}\n" );

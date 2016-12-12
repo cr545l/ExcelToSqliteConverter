@@ -56,7 +56,8 @@ namespace Lofle.XlsToSqliteConverter
 				command.Append( "\')" );
 				Command( connection, command.ToString() );
 
-				percent?.Invoke( (j - 3) / (float)(rowLength - 3 ));
+				float lowLength = 0.0f != (float)( rowLength - 3 ) ? (float)( rowLength - 3 ) : 1;
+				percent?.Invoke( (j - 3) / lowLength );
 			}
 			Command( connection, _COMMIT );
 		}

@@ -75,8 +75,7 @@ namespace Lofle.XlsToSqliteConverterGUI
 			convertProgress.Value = value._convert;
 			insertProgress.Value = value._insert;
 
-			this.Dispatcher.Invoke(
-		   (System.Threading.ThreadStart)(() => { }), System.Windows.Threading.DispatcherPriority.ApplicationIdle );
+			this.Dispatcher.Invoke( (System.Threading.ThreadStart)(() => { }), System.Windows.Threading.DispatcherPriority.ApplicationIdle );
 
 			if( 1.0f <= value._convert )
 			{

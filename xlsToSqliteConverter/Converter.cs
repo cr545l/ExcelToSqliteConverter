@@ -72,7 +72,7 @@ namespace Lofle.XlsToSqliteConverter
 		{
 			GenerateCodeInfo result = new GenerateCodeInfo();
 			StringBuilder code = new StringBuilder();
-
+			
 			using( ExcelAssist excelAssist = new ExcelAssist() )
 			{
 				for( int i = 0; i < filePaths.Length; i++ )
