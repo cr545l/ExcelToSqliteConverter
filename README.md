@@ -25,15 +25,22 @@ GUI, CUI 기반의 Excel to SQLite 변환 프로그램
 >  
 > - **Sheet 명** : Table 명
 > - **1행** : Column 명
-> - **2행** : 해당 Column의 Type
+> - **2행** : Column의 Type (하단 자료형 참고)
+> - **3행** : Column의 설명문
 >
->> **SQLite 자료형** (동적 타입이므로 꼭 맞추지 않아도 동작)
+>> **SQLite 자료형**
 >>
 >> - **INTEGER** : 1,2,3,4,6,8bytes의 정수값
 >> - **REAL** : 8bytes의 부동소수점값
 >> - **TEXT** : UTF-8, UTF-16BE, UTF-16LE인코딩의 문자열
 >> - **BLOB** : 입력된 그대로 저장, 바이너리 파일 등
 >> - **NULL** : 널값
+>>
+>> **정의된 자료형**
+>>
+>> - **int, bigint** : 1,2,3,4,6,8bytes의 정수값
+>> - **real, float** : 8bytes의 부동소수점값
+>> - **text, string, varchar** : UTF-8, UTF-16BE, UTF-16LE인코딩의 문자열
 >
 > 위 규칙으로 Excel 파일에서 SQLite 파일로 변환
 

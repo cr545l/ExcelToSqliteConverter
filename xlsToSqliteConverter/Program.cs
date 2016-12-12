@@ -24,10 +24,10 @@ namespace Lofle.XlsToSqliteConverter
 					obj = null;
 				}
 			}
-			catch( Exception ex )
+			catch( Exception e )
 			{
 				obj = null;
-				throw ex;
+				throw e;
 			}
 			finally
 			{

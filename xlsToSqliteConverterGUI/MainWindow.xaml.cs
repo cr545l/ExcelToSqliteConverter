@@ -49,19 +49,23 @@ namespace Lofle.XlsToSqliteConverterGUI
 		{
 			if( !_bStart )
 			{
+#if true//!DEBUG
 				try
 				{
+#endif
 					Converter.GenerateCodeInfo info = Converter.Files( files, CallbackPercent );
 
 					if( true == checkBox.IsChecked )
 					{
 						IOAssist.CreateFile( info.Path + textBox.Text, info.Code );
 					}
+#if true//!DEBUG
 				}
-				catch( Exception exception )
+				catch( Exception e )
 				{
-					MessageBox.Show( exception.ToString(), "확인", MessageBoxButton.OK );
+					MessageBox.Show( e.Message + "\n\n" + e.ToString(), "확인", MessageBoxButton.OK );
 				}
+#endif
 			}
 		}
 

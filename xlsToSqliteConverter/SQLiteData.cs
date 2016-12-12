@@ -8,12 +8,15 @@ namespace Lofle.XlsToSqliteConverter
 {
 	public class SQLiteData
 	{
-		static private readonly int _COLUMNS_INDEX = 1;
-		static private readonly int _TYPES_INDEX = 2;
+		static public readonly int _COLUMNS_INDEX = 1;
+		static public readonly int _TYPES_INDEX = 2;
+		static public readonly int _COMMENT_INDEX = 3;
+		static public readonly int _ROW_START_INDEX = 4;
 
 		private string _sheetName;
 		private string[] _columns;
 		private string[] _types;
+		private string[] _comment;
 		private object[,] _datas;
 
 		public string SheetName
@@ -28,8 +31,10 @@ namespace Lofle.XlsToSqliteConverter
 			set
 			{
 				_datas = value;
+				
 				_columns = GetArray<string>( _datas, _COLUMNS_INDEX );
 				_types = GetArray<string>( _datas, _TYPES_INDEX );
+				_comment = GetArray<string>( _datas, _COMMENT_INDEX );
 			}
 		}
 
@@ -50,7 +55,7 @@ namespace Lofle.XlsToSqliteConverter
 		{
 			return AppendToString( ( s, i ) =>
 			{
-				s.Append( _columns[i] );
+				s.Append( null != _columns[i] ? _columns[i] : "null" );
 			} );
 		}
 
@@ -58,9 +63,9 @@ namespace Lofle.XlsToSqliteConverter
 		{
 			return AppendToString( ( s, i ) =>
 			{
-				s.Append( _columns[i] );
+				s.Append( null != _columns[i] ? _columns[i] : "null" );
 				s.Append( " " );
-				s.Append( _types[i] );
+				s.Append( null != _types[i] ? _types[i] : "null" );
 			} );
 		}
 
@@ -91,19 +96,24 @@ namespace Lofle.XlsToSqliteConverter
 			result.Append( "\tpublic class " );
 			result.Append( _sheetName );
 			result.Append( "\n\t{\n" );
-
+			
 			for( int i = 0; i < _types.Length; i++ )
 			{
 				if( null != _types[i] && 0 == String.Compare( _types[i].ToUpper(), "INTEGER PRIMARY KEY" ) )
 				{
 					result.Append( "\t\t[PrimaryKey, AutoIncrement]\n" );
 				}
-
+				if( null != _comment[i] && string.Empty != _comment[i])
+				{
+					result.Append( "\t\t/// <summary>\n\t\t/// " );
+					result.Append( _comment[i] );
+					result.Append( "\n\t\t/// </summary>\n" );
+				}
 				result.Append( "\t\tpublic " );
 				result.Append( SQLiteType.ConvertCShapeType( _types[i] ));
 				result.Append( " " );
 				result.Append( _columns[i] );
-				result.Append( " { get; set; }\n" );
+				result.Append( " { get; set; }\n\n" );
 			}
 			result.Append( "\t}\n" );
 			result.Append( "}\n" );
