@@ -8,8 +8,25 @@ namespace Lofle.XlsToSqliteConverter
 {
 	class Constant
 	{
+		/// <summary>
+		/// 컬럼
+		/// </summary>
 		public const int _COLUMNS_INDEX = 1;
+
+		/// <summary>
+		/// 자료형
+		/// </summary>
 		public const int _TYPES_INDEX = 2;
+
+		/// <summary>
+		/// 주석
+		/// </summary>
+		public const int _COMMENT_INDEX = 3;
+
+		/// <summary>
+		/// 데이터 시작부분
+		/// </summary>
+		public const int _ROW_START_INDEX = _COMMENT_INDEX+1;
 
 		public const string _COMMAND_CREATE_TABLE = "create table {0} ({1})";
 		public const string _COMMAND_INSERT_INTO = "insert into {0} ({1}) values (";

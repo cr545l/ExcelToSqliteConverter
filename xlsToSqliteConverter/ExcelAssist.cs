@@ -38,7 +38,7 @@ namespace Lofle.XlsToSqliteConverter
 			}
 			catch( Exception e )
 			{
-				Debug.LogError( e.ToString() );
+				throw e;
 			}
 			finally
 			{

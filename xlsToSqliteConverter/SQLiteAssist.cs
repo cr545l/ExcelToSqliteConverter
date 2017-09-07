@@ -22,25 +22,25 @@ namespace Lofle.XlsToSqliteConverter
 
 			int rowLength = dataSet.Datas.GetLength( 0 );
 			int columnLength = dataSet.Datas.GetLength( 1 );
-
+			
 			Command( connection, Constant._BEGIN );
-			for( int j = 3; j <= rowLength; j++ )
+			for( int j = Constant._ROW_START_INDEX; j <= rowLength; j++ )
 			{
 				command = new StringBuilder( defaultCommand );
 				for( int i = 1; i <= columnLength; i++ )
 				{
-					dynamic data = dataSet.Datas[j, i];
 					if( 1 != i )
 					{
 						command.Append( "\', " );
 					}
 					command.Append( "\'" );
 
+					dynamic data = dataSet.Datas[j, i];
 					if( null != data )
 					{
 						if( data.GetType() == typeof( string ) )
 						{
-							string stringData = data as string; ;
+							string stringData = data as string;
 							stringData = stringData.Replace( "\'", "\'\'" );
 							data = stringData;
 						}
@@ -51,8 +51,8 @@ namespace Lofle.XlsToSqliteConverter
 				command.Append( "\')" );
 				Command( connection, command.ToString() );
 
-				float lowLength = 0.0f != (float)( rowLength - 3 ) ? (float)( rowLength - 3 ) : 1;
-				percent?.Invoke( (j - 3) / lowLength );
+				float lowLength = 0.0f != (float)( rowLength - Constant._ROW_START_INDEX) ? (float)( rowLength - Constant._ROW_START_INDEX ) : 1;
+				percent?.Invoke( (j - Constant._ROW_START_INDEX) / lowLength );
 			}
 			Command( connection, Constant._COMMIT );
 		}
@@ -66,8 +66,8 @@ namespace Lofle.XlsToSqliteConverter
 			}
 			catch( Exception e )
 			{
-				// 시트명이 숫자로 되어 있으면 예외발생
-				Debug.LogError( "{0} {1}", command, e.ToString() );
+				Debug.Log( "{0} {1}", command, e.ToString() );
+				throw e;
 			}
 		}
 	}
