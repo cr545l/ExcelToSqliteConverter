@@ -8,19 +8,12 @@ namespace Lofle.XlsToSqliteConverter
 {
 	public class SQLiteData
 	{
-		static private readonly int _COLUMNS_INDEX = 1;
-		static private readonly int _TYPES_INDEX = 2;
-
 		private string _sheetName;
 		private string[] _columns;
 		private string[] _types;
 		private object[,] _datas;
 
-		public string SheetName
-		{
-			get { return _sheetName; }
-			set { _sheetName = value; }
-		}
+		public string SheetName { get { return _sheetName; } set { _sheetName = value; } }
 
 		public object[,] Datas
 		{
@@ -28,8 +21,8 @@ namespace Lofle.XlsToSqliteConverter
 			set
 			{
 				_datas = value;
-				_columns = GetArray<string>( _datas, _COLUMNS_INDEX );
-				_types = GetArray<string>( _datas, _TYPES_INDEX );
+				_columns = GetArray<string>( _datas, Constant._COLUMNS_INDEX );
+				_types = GetArray<string>( _datas, Constant._TYPES_INDEX );
 			}
 		}
 
@@ -94,13 +87,13 @@ namespace Lofle.XlsToSqliteConverter
 
 			for( int i = 0; i < _types.Length; i++ )
 			{
-				if( null != _types[i] && 0 == String.Compare( _types[i].ToUpper(), "INTEGER PRIMARY KEY" ) )
+				if( null != _types[i] && isPrimaryKey( _types[i] ) )
 				{
-					result.Append( "\t\t[PrimaryKey, AutoIncrement]\n" );
+					result.Append( "\t\t[SQLite4Unity3d.PrimaryKey, SQLite4Unity3d.AutoIncrement]\n" );
 				}
 
 				result.Append( "\t\tpublic " );
-				result.Append( SQLiteType.ConvertCShapeType( _types[i] ));
+				result.Append( ConvertCShapeType( _types[i] ));
 				result.Append( " " );
 				result.Append( _columns[i] );
 				result.Append( " { get; set; }\n" );
@@ -109,6 +102,23 @@ namespace Lofle.XlsToSqliteConverter
 			result.Append( "}\n" );
 
 			return result.ToString();
+		}
+
+		static public bool isPrimaryKey(string type)
+		{
+			return 0 == String.Compare( type.ToLower(), Constant._INTEGER_PRIMARY_KEY );
+		}
+
+		static public string ConvertCShapeType( string sqliteType )
+		{
+			if( null == sqliteType || !Constant._PARSE_DATA.ContainsKey( sqliteType.ToLower() ) )
+			{
+				return Constant._PARSE_DATA["string"];
+			}
+			else
+			{
+				return Constant._PARSE_DATA[sqliteType.ToLower()];
+			}
 		}
 	}
 }

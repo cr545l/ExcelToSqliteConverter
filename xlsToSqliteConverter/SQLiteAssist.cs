@@ -9,26 +9,21 @@ namespace Lofle.XlsToSqliteConverter
 {
 	public class SQLiteAssist
 	{
-		static private readonly string _COMMAND_CREATE_TABLE = "create table {0} ({1})";
-		static private readonly string _COMMAND_INSERT_INTO = "insert into {0} ({1}) values (";
-		static private readonly string _BEGIN = "Begin;";
-		static private readonly string _COMMIT = "Commit;";
-
 		static public void CreateTable( SQLiteConnection connection, SQLiteData dataSet )
 		{
-			string command = String.Format( _COMMAND_CREATE_TABLE, dataSet.SheetName, dataSet.GetColumnAndTypes() );
+			string command = String.Format( Constant._COMMAND_CREATE_TABLE, dataSet.SheetName, dataSet.GetColumnAndTypes() );
 			Command( connection, command );
 		}
 
 		static public void Insert( SQLiteConnection connection, SQLiteData dataSet, Action<float> percent = null )
 		{
-			string defaultCommand = String.Format( _COMMAND_INSERT_INTO, dataSet.SheetName, dataSet.GetColumns() );
+			string defaultCommand = String.Format( Constant._COMMAND_INSERT_INTO, dataSet.SheetName, dataSet.GetColumns() );
 			StringBuilder command = null;
 
 			int rowLength = dataSet.Datas.GetLength( 0 );
 			int columnLength = dataSet.Datas.GetLength( 1 );
 
-			Command( connection, _BEGIN );
+			Command( connection, Constant._BEGIN );
 			for( int j = 3; j <= rowLength; j++ )
 			{
 				command = new StringBuilder( defaultCommand );
@@ -59,7 +54,7 @@ namespace Lofle.XlsToSqliteConverter
 				float lowLength = 0.0f != (float)( rowLength - 3 ) ? (float)( rowLength - 3 ) : 1;
 				percent?.Invoke( (j - 3) / lowLength );
 			}
-			Command( connection, _COMMIT );
+			Command( connection, Constant._COMMIT );
 		}
 
 		static private void Command( SQLiteConnection connection, string command )

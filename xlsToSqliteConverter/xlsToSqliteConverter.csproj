@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command.cs" />
+    <Compile Include="Constant.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="IOAssist.cs" />
     <Compile Include="SQLiteData.cs" />
@@ -86,7 +87,6 @@
     <Compile Include="ExcelAssist.cs" />
     <Compile Include="SQLitePathInfo.cs" />
     <Compile Include="SQLiteAssist.cs" />
-    <Compile Include="SQLiteType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
