@@ -83,7 +83,7 @@ namespace Lofle.XlsToSqliteConverter
 			result.Append( fileName );
 			result.Append( "\n{\n" );
 
-			result.Append( "\tpublic class " );
+			result.Append( "\tpublic partial class " );
 			result.Append( _sheetName );
 			result.Append( "\n\t{\n" );
 			
