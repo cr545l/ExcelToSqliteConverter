@@ -122,13 +122,42 @@ namespace Lofle.XlsToSqliteConverter
 				result.Append( _columns[i] );
 				result.Append( " { get; set; }\n\n" );
 			}
+
+			result.Append( "\t\tpublic override string ToString ()" );
+			result.Append( "\n\t\t{\n" );
+			result.Append( "\t\t\treturn string.Format( \"[" );
+			result.Append( _sheetName );
+			result.Append( ": " );
+
+			for( int i = 0; i < _columns.Length; i++ )
+			{
+				result.Append( $"{_columns[i]}={{{i}}}" );
+				if( i < _columns.Length - 1 )
+				{
+					result.Append( "," );
+				}
+			}
+			result.Append( "]\", " );
+
+			for( int i = 0; i < _columns.Length; i++ )
+			{
+				result.Append( _columns[i] );
+				if( i < _columns.Length - 1 )
+				{
+					result.Append( ", " );
+				}
+			}
+
+			result.Append( ");\n" );
+			result.Append( "\t\t}\n" );
+
 			result.Append( "\t}\n" );
 			result.Append( "}\n" );
 
 			return result.ToString();
 		}
 
-		static public bool isPrimaryKey(string type)
+		static public bool isPrimaryKey( string type )
 		{
 			return 0 == String.Compare( type.ToLower(), Constant._INTEGER_PRIMARY_KEY );
 		}

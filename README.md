@@ -38,6 +38,7 @@ GUI, CUI 기반의 Excel to SQLite 변환 프로그램
 >>
 >> **정의된 자료형**
 >>
+>> - **integer primary key** : 기본 키
 >> - **int, bigint** : 1,2,3,4,6,8bytes의 정수값
 >> - **real, float** : 8bytes의 부동소수점값
 >> - **text, string, varchar** : UTF-8, UTF-16BE, UTF-16LE인코딩의 문자열
