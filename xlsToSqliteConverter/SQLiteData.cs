@@ -14,6 +14,7 @@ namespace Lofle.XlsToSqliteConverter
 		private string[] _comment;
 		private object[,] _datas;
 
+		public string[] Columns { get => _columns; set => _columns = value; }
 		public string SheetName { get { return _sheetName; } set { _sheetName = value; } }
 
 		public object[,] Datas
@@ -25,6 +26,19 @@ namespace Lofle.XlsToSqliteConverter
 				_columns = GetArray<string>( _datas, Constant._COLUMNS_INDEX );
 				_types = GetArray<string>( _datas, Constant._TYPES_INDEX );
 				_comment = GetArray<string>( _datas, Constant._COMMENT_INDEX );
+
+				for(int i =0; i < _columns.Length; i++ )
+				{
+					if(null == _columns[i] )
+					{
+						Array.Resize( ref _columns, i );
+						Array.Resize( ref _types, i );
+						Array.Resize( ref _comment, i );
+
+						break;
+					}
+				}
+
 			}
 		}
 
@@ -53,9 +67,12 @@ namespace Lofle.XlsToSqliteConverter
 		{
 			return AppendToString( ( s, i ) =>
 			{
-				s.Append( null != _columns[i] ? _columns[i] : "null" );
-				s.Append( " " );
-				s.Append( null != _types[i] ? _types[i] : "null" );
+				if( null != _columns[i] && null != _types[i] )
+				{
+					s.Append( _columns[i] );
+					s.Append( " " );
+					s.Append( _types[i] );
+				}
 			} );
 		}
 

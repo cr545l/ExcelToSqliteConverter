@@ -21,7 +21,7 @@ namespace Lofle.XlsToSqliteConverter
 			StringBuilder command = null;
 
 			int rowLength = dataSet.Datas.GetLength( 0 );
-			int columnLength = dataSet.Datas.GetLength( 1 );
+			int columnLength = dataSet.Columns.Length;
 			
 			Command( connection, Constant._BEGIN );
 			for( int j = Constant._ROW_START_INDEX; j <= rowLength; j++ )
