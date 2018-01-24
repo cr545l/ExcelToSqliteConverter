@@ -23,13 +23,13 @@ namespace Lofle.XlsToSqliteConverter
 			set
 			{
 				_datas = value;
-				_columns = GetArray<string>( _datas, Constant._COLUMNS_INDEX );
-				_types = GetArray<string>( _datas, Constant._TYPES_INDEX );
-				_comment = GetArray<string>( _datas, Constant._COMMENT_INDEX );
+				_columns = GetArray<string>( _datas, Constant._COLUMNS_INDEX, i => _datas[Constant._COLUMNS_INDEX, i + 1]?.ToString() );
+				_types = GetArray<string>( _datas, Constant._TYPES_INDEX, i => _datas[Constant._TYPES_INDEX, i + 1]?.ToString() );
+				_comment = GetArray<string>( _datas, Constant._COMMENT_INDEX, i => _datas[Constant._COMMENT_INDEX, i + 1]?.ToString() );
 
-				for(int i =0; i < _columns.Length; i++ )
+				for( int i = 0; i < _columns.Length; i++ )
 				{
-					if(null == _columns[i] )
+					if( null == _columns[i] )
 					{
 						Array.Resize( ref _columns, i );
 						Array.Resize( ref _types, i );
@@ -42,18 +42,31 @@ namespace Lofle.XlsToSqliteConverter
 			}
 		}
 
-		static private T[] GetArray<T>( object[,] source, int index )
+		static private T[] GetArray<T>( object[,] source, int index, Func<int, T> cast )
 		{
 			// UsedRange.Value2로 가져온 배열의 인덱스가 1부터 시작
 			T[] result = new T[source.GetLength( 1 )];
 
 			for( int i = 0; i < result.Length; i++ )
 			{
-				result[i] = (T)source[index, i + 1];
+				result[i] = cast( i );
 			}
 
 			return result;
 		}
+
+		//static private T[] GetArray<T>( object[,] source, int index )
+		//{
+		//	// UsedRange.Value2로 가져온 배열의 인덱스가 1부터 시작
+		//	T[] result = new T[source.GetLength( 1 )];
+		//
+		//	for( int i = 0; i < result.Length; i++ )
+		//	{
+		//		result[i] = (T)source[index, i + 1];
+		//	}
+		//
+		//	return result;
+		//}
 
 		public string GetColumns()
 		{
