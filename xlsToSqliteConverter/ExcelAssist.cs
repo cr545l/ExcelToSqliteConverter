@@ -26,13 +26,17 @@ namespace Lofle.XlsToSqliteConverter
 			try
 			{
 				workBook = _application.Workbooks.Open( filePath, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0 );
-				
+
 				if( null != workBook )
 				{
 					// UsedRange.Value2로 가져온 배열의 인덱스가 1부터 시작
 					for( int i = 1; i <= workBook.Worksheets.Count; i++ )
 					{
-						result.Add( Convert( workBook.Worksheets.get_Item( i ) ) );
+						SQLiteData data = ToSQLiteData( workBook.Worksheets.get_Item( i ) );
+						if( null != data )
+						{
+							result.Add( data );
+						}
 					}
 				}
 			}
@@ -48,15 +52,13 @@ namespace Lofle.XlsToSqliteConverter
 			return result.ToArray();
 		}
 
-		static private SQLiteData Convert( Excel.Worksheet workSheet )
+		static private SQLiteData ToSQLiteData( Excel.Worksheet workSheet )
 		{
 			Excel.Range range = workSheet.UsedRange;
 			Excel.Range rows = range.Rows;
 			Excel.Range columns = range.Columns;
 
-			SQLiteData dataSet = new SQLiteData();
-			dataSet.SheetName = workSheet.Name;
-			dataSet.Datas = workSheet.UsedRange.Value2;
+			SQLiteData dataSet = SQLiteData.Create( workSheet.Name, workSheet.UsedRange.Value2 );
 
 			Program.Release( workSheet );
 

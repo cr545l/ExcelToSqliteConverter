@@ -37,10 +37,11 @@ GUI, CUI 기반의 Excel to SQLite 변환 프로그램
 >> - **NULL** : 널값
 >>
 >> **정의된 자료형**
->>
+>>(기본적으로 double이 아닌 float가 8bytes 부동소수점이나 개발 편의상 통상적인 타입으로 변경)
 >> - **integer primary key** : 기본 키
 >> - **int, bigint** : 1,2,3,4,6,8bytes의 정수값
->> - **real, float** : 8bytes의 부동소수점값
+>> - **float** : 4bytes의 부동소수점값
+>> - **real, double** : 8bytes의 부동소수점값
 >> - **text, string, varchar** : UTF-8, UTF-16BE, UTF-16LE인코딩의 문자열
 >
 > 위 규칙으로 Excel 파일에서 SQLite 파일로 변환

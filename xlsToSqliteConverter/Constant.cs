@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Lofle.XlsToSqliteConverter
 {
@@ -37,22 +33,23 @@ namespace Lofle.XlsToSqliteConverter
 
 		static public readonly Dictionary<string, string> _PARSE_DATA = new Dictionary<string, string>
 		{
-			{ _INTEGER_PRIMARY_KEY,		typeof(Int32).ToString()        },
-			{ "int",					typeof(Int32).ToString()		},
-			{ "integer",				typeof(Int32).ToString()		},
+			{ _INTEGER_PRIMARY_KEY,		typeof(System.Int32).ToString()        },
+			{ "int",					typeof(System.Int32).ToString()		},
+			{ "integer",				typeof(System.Int32).ToString()		},
 
-			{ "bigint",					typeof(Int64).ToString()		},
+			{ "bigint",					typeof(System.Int64).ToString()		},
 
-			{ "real",					typeof(Double).ToString()		},
-			{ "float",					typeof(Double).ToString()		},
+			{ "real",					typeof(System.Double).ToString()		},
+			{ "double",                 typeof(System.Double).ToString()        },
+			{ "float",					typeof(System.Single).ToString()		},
 
-			{ "text",					typeof(String).ToString()		},
-			{ "string",					typeof(String).ToString()		},
-			{ "varchar",				typeof(String).ToString()		},
+			{ "text",					typeof(System.String).ToString()		},
+			{ "string",					typeof(System.String).ToString()		},
+			{ "varchar",				typeof(System.String).ToString()		},
 
-			{ "datetime",				typeof(DateTime).ToString()		},
+			{ "datetime",				typeof(System.DateTime).ToString()		},
 			{ "blob",					typeof(byte[]).ToString()		},
-			{ "varchar(36)",			typeof(Guid).ToString()			},
+			{ "varchar(36)",			typeof(System.Guid).ToString()			},
 		};
 	}
 }
